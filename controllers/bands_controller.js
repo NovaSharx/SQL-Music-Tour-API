@@ -8,9 +8,9 @@ const { Op } = require('sequelize')
 bands.get('/', async (req, res) => {
     try {
         const foundBands = await Band.findAll({
-            order: [['available_start_time', 'ASC']], // ascending order
+            order: [['available_start_time', 'ASC']], // Lists in ascending order
             where: {
-                name: { [Op.like]: `%${req.query.name ? req.query.name : ''}%` } // can query the name of the band
+                name: { [Op.like]: `%${req.query.name ? req.query.name : ''}%` } // Can query the name of the band
             }
         })
         res.status(200).json(foundBands)
@@ -53,7 +53,7 @@ bands.put('/:id', async (req, res) => {
             }
         })
         res.status(200).json({
-            message: `Successfully updated ${updatedBands} band(s)`
+            message: `Successfully updated ${updatedBands} band(s)!`
         })
     } catch (error) {
         res.status(500).json(error)
@@ -69,7 +69,7 @@ bands.delete('/:id', async (req, res) => {
             }
         })
         res.status(200).json({
-            message: `Successfully deleted ${deletedBands} band(s)`
+            message: `Successfully deleted ${deletedBands} band(s)!`
         })
     } catch (error) {
         res.status(500).json(error)
